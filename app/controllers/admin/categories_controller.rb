@@ -25,14 +25,19 @@ class Admin::CategoriesController < ApplicationController
     if @category = Category.find(params[:id])
       @category.update(category_params)
       redirect_to admin_categories_path
-      flash[:notice] = "category was seccesually update!"
+      flash[:notice] = "category was seccessfully update!"
     else
       @categories = Category.all
       render :index
     end
   end
 
-  
+  def destroy
+    @category = Category.find(params[:id])
+    @category.destroy
+    flash[:notice] = "category was seccessfully deleted!"
+    redirect_to admin_categories_path
+  end
     
 
   private
