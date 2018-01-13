@@ -9,11 +9,11 @@
 Category.destroy_all
 
 category_list = [
-  {name: "中間料理"},
+  {name: "中華料理"},
   {name: "日本料理"},
   {name: "航道料理"},
-  {name: "這個料理"},
-  {name: "每個料理"},
+  {name: "印度料理"},
+  {name: "泰國料理"},
   {name: "義式料理"},
   {name: "科技料理"},
 ]
