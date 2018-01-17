@@ -30,7 +30,7 @@
   </div>
 </div>
 
-
+<!-- 留言區塊 -->
 <div class="container">
   <div class="row">
     <%= form_for [@restaurant, @comment] do |f| %>
@@ -47,3 +47,20 @@
     <% end %>
   </div>
 </div>
+
+<!-- 顯示留言 -->
+<div class="container">
+  <div class="row">
+    <% @restaurant.comments.each do |comment| %>
+    <h4><%= comment.user.email.split('@').first %></h4>
+    <p><%= simple_format comment.content %></p>
+    <p class="text-muted">
+      <em><%= time_ago_in_words(comment.created_at) %> </em>
+    </p>
+    <% end %>
+  </div>
+</div>
+
+
+
+
