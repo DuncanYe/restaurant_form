@@ -4,4 +4,5 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.page(params[:page]).per(9)
     @categories = Category.all
   end
+  
 end
