@@ -4,8 +4,23 @@ class CommentsController < ApplicationController
     @restaurant = Restaurant.find(params[:restaurant_id])
     @comment = @restaurant.comments.build(comment_params)
     @comment.user = current_user
-    @comment.save!
-    redirect_to restaurant_path(@restaurant)
+    if @comment.save
+       redirect_to restaurant_path(@restaurant)
+       flash[:notice] = "Comment was created!"
+    else
+      flash[:notice] = "can't create a blank comment!"
+      redirect_to restaurant_path(@restaurant)
+    end
+  end
+  
+  def destroy
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @comment = Comment.find(params[:id])
+
+    if current_user.admin?
+      @comment.destroy
+      redirect_to restaurant_path(@restaurant)
+    end
   end
 
   private
@@ -13,4 +28,5 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:content)
   end
+
 end
