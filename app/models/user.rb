@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :comments         
 
+  validates_presence_of :name
+
   def admin?
     self.role == "admin"
   end
