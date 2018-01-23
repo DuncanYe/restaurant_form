@@ -3,4 +3,5 @@
 <% else %>
   <%= link_to 'Favorite', favorite_restaurant_path(restaurant), method: :post, class: "btn btn-primary", data: { :"disable-with" => "Waiting...." } %>
 <% end %>
+
 <!-- 增加:disable_with方法避免重複點擊 -->
