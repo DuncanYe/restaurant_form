@@ -18,6 +18,10 @@ class User < ApplicationRecord
   # 自訂名稱後，Rails 無法自動推論來源名稱，需另加 source 告知 model name
   has_many :favorites, dependent: :destroy
   has_many :favorited_restaurants, through: :favorites, source: :restaurant
+
+   # like
+  has_many :likes, dependent: :destroy
+  has_many :like_users, through: :likes, source: :user 
   
   # admin? 讓我們用來判斷單個user是否有 admin 角色，列如：current_user.admin?
   def admin?
