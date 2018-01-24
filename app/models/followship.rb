@@ -1,5 +1,6 @@
 class Followship < ApplicationRecord
-
+  
+  # 確保特定 user_id 下，只能有一個 followings_id
   validates :following_id, uniqueness: { scope: :user_id }
 
   # 「使用者追蹤使用者」的 self-referential relationships 設定
