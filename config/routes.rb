@@ -19,15 +19,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :categories, only: :show
-  root "restaurants#index"
-
-  resources :users, only: [:show, :edit, :update]
-
   namespace :admin do
     resources :categories
     resources :restaurants
     root "restaurants#index"
   end
+
+  resources :categories, only: :show
+  root "restaurants#index"
+
+ 
 
 end
