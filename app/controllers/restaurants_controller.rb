@@ -18,6 +18,10 @@ class RestaurantsController < ApplicationController
   def dashboard
   end
 
+  def rank
+    
+  end
+
   def favorite
     @restaurant.favorites.create!(user: current_user)
     redirect_back(fallback_location: root_path)
