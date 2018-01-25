@@ -18,18 +18,20 @@ class RestaurantsController < ApplicationController
   def dashboard
   end
 
-  def rank
-    
+  def ranking
+    @restaurants = Restaurant.order(favorites_count: :desc).limit(10)
   end
 
   def favorite
     @restaurant.favorites.create!(user: current_user)
+    @restaurant.count_favorites
     redirect_back(fallback_location: root_path)
   end
 
   def unfavorite
     favorites = Favorite.where(restaurant: @restaurant, user: current_user)
     favorites.destroy_all
+    @restaurant.count_favorites
     redirect_back(fallback_location: root_path)
   end
 
