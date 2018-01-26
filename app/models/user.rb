@@ -27,6 +27,9 @@ class User < ApplicationRecord
   # 不需要另加 source，Rails 可從 Followship Model 設定來判斷 followings 指向 User Model
   has_many :followships, dependent: :destroy
   has_many :followings, through: :followships
+
+  has_many :inverse_followships, class_name: "Followship", foreign_key: "following_id"
+  has_many :followers, through: :inverse_followships, source: :user
   
   # admin? 讓我們用來判斷單個user是否有 admin 角色，列如：current_user.admin?
   def admin?
