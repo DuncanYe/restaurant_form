@@ -13,6 +13,12 @@
         <div class="col-md-9 col-sm-8">
           <h2><%= @user.name %></h2>
           <p><strong><%= @user.email %></strong></p>
+          <ul class="list-unstyled list-inline">
+            <li><strong><%= @commented_restaurants.count %></strong> 已評論餐廳</li>
+            <li><strong><%= @favorited_restaurants.count %></strong> 已評論餐廳</li>
+            <li><strong><%= @followings.count %></strong> 已評論餐廳</li>
+            <li><strong><%= @followers.count %></strong> 已評論餐廳</li>
+          </ul>
           <div><%= simple_format @user.intro %></div>
           <% if @user.email == current_user.email %>
             <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary" %>
@@ -44,7 +50,14 @@
             <% end %>
           </div>
         </div>
-      </div>  
+      </div> 
+
+      <div>
+        <h3><%= @commented_restaurants.name %>評論過的餐廳</h3>
+        <h3>最愛餐廳<%= @favorited_restaurants %></h3>
+        <h3>追蹤對象<%= @followings %></h3>
+        <h3>追蹤者<%= @followers %></h3>
+      </div> 
       
 
 
