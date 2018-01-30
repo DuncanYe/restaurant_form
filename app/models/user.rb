@@ -32,6 +32,11 @@ class User < ApplicationRecord
    # 透過 class_name, foreign_key 的自訂，指向 Followship 表上的另一側
   has_many :inverse_followships, class_name: "Followship", foreign_key: "following_id"
   has_many :followers, through: :inverse_followships, source: :user
+
+  #  一個user有很多朋友關係紀錄(這裏朋友關係指被加為好友) 
+  has_many :friendships, dependent: :destroy
+  # 一個user有很多加別人好友的紀錄
+  has_many :friend, through: :friendships
   
   # admin? 讓我們用來判斷單個user是否有 admin 角色，列如：current_user.admin?
   def admin?
