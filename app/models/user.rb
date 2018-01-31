@@ -36,7 +36,7 @@ class User < ApplicationRecord
   #  一個user有很多朋友關係紀錄(這裏朋友關係指被加為好友) 
   has_many :friendships, dependent: :destroy
   # 一個user有很多加別人好友的紀錄
-  has_many :friend, through: :friendships
+  has_many :friends, through: :friendships
   
   # admin? 讓我們用來判斷單個user是否有 admin 角色，列如：current_user.admin?
   def admin?
@@ -46,6 +46,11 @@ class User < ApplicationRecord
   # 判斷此使用者本身
   def following?(user)
     self.followings.include?(user)
+  end
+
+  # 判斷使用者是自己本身，並隱藏交友按鈕
+  def friend?(user)
+    self.friends.include?(user)
   end
   
 end
